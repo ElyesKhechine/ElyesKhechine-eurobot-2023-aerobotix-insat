@@ -1,0 +1,78 @@
+{
+    "name": "waaa",
+    "missions_simples": [
+        {
+            "name": "Welcome simple1",
+            "x": "0.0",
+            "y": "0.0",
+            "teta": "0.0",
+            "reachable": "True",
+            "done": "False",
+            "score_kbir": "1.2",
+            "score_s8ir": "0.0"
+        },
+        {
+            "name": "Welcome simple2",
+            "x": "0.0",
+            "y": "0.0",
+            "teta": "0.0",
+            "reachable": "True",
+            "done": "False",
+            "score_kbir": "0.0",
+            "score_s8ir": "0.0"
+        }
+    ],
+    "missions_complex": [
+        {
+            "name": "secondaire",
+            "x": "0.0",
+            "y": "0.0",
+            "teta": "0.0",
+            "reachable": true,
+            "done": false,
+            "score_kbir": 15,
+            "score_s8ir": 26,
+            "robot": 0,
+            "missions": [
+                "a",
+                "b"
+            ]
+        },
+        {
+            "name": "fouille",
+            "x": "0.0",
+            "y": "0.0",
+            "teta": "0.0",
+            "reachable": true,
+            "done": false,
+            "score_kbir": 11,
+            "score_s8ir": 3,
+            "robot": 0,
+            "missions": []
+        },
+        {
+            "name": "galerie",
+            "x": "0.0",
+            "y": "0.0",
+            "teta": "0.0",
+            "reachable": true,
+            "done": false,
+            "score_kbir": 4.5,
+            "score_s8ir": 1,
+            "robot": 0,
+            "missions": []
+        },
+        {
+            "name": "abri",
+            "x": "0.0",
+            "y": "0.0",
+            "teta": "0.0",
+            "reachable": true,
+            "done": false,
+            "score_kbir": 100,
+            "score_s8ir": 100,
+            "robot": 0,
+            "missions": []
+        }
+    ]
+}

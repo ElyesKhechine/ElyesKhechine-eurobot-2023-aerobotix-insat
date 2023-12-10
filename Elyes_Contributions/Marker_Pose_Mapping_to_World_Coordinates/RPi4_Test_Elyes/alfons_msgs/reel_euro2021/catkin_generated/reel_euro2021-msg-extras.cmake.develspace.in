@@ -1,0 +1,2 @@
+set(reel_euro2021_MESSAGE_FILES "/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/msg/ta7wil.msg;/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/msg/goal.msg;/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/msg/mission.msg;/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/msg/c.msg;/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/msg/jdid.msg;/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/msg/IntList.msg")
+set(reel_euro2021_SERVICE_FILES "/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/srv/map.srv;/home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/srv/jd.srv")

@@ -1,0 +1,6 @@
+image: mapEuro.png
+resolution: 0.01000
+origin: [0.0,0.0, 0.0]
+negate: 0
+occupied_thresh: 2
+free_thresh: 0.2

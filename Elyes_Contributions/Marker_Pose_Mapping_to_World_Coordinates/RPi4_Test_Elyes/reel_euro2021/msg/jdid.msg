@@ -1,0 +1,9 @@
+string command
+float32 x
+float32 y
+float32 phi
+int32 vitesse
+c[] curv_path
+int32 nombre
+string result
+bool success

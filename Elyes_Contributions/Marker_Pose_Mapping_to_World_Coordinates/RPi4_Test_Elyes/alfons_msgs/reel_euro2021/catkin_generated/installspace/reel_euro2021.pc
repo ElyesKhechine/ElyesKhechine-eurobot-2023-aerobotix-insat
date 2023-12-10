@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: reel_euro2021
+Description: Description of reel_euro2021
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs message_runtime geometry_msgs std_msgs

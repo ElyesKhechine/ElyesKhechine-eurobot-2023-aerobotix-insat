@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<launch>
+
+  <!-- Tf of Robot -->
+  <node pkg="tf" type="static_transform_publisher" name="map_odom_broadcaster"
+    args="0.378 0.98 0 0 0 0 map odom 1000"/>
+  <!-- Tf of Laser -->
+  <node pkg="tf" type="static_transform_publisher" name="base_link_laser_broadcaster"
+    args="0 0.1 0 0 0 0 base_link laser 1000"/>
+  <!-- t7awel msget STM ==> TF w ODOM -->
+  <node pkg="reel_euro2021" type="ta7wil" name="ta7wil"/>
+  <!-- Map File -->
+  <arg name="map_file" default="$(find reel_euro2021)/maps/mapjdida.yaml"/>
+  <!-- Map Server -->
+  <!-- Publish: /map, /map_metadata -->
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" />
+
+ <!-- TEB  -->
+ <!--include file="$(find reel_euro2021)/launch/navi_robot_teb.launch" /-->
+
+<!-- RVIZ  -->
+<node type="rviz" name="rviz" pkg="rviz" args="-d $(find reel_euro2021)/rviz/rviz_config_file.rviz" /> 
+
+
+</launch>

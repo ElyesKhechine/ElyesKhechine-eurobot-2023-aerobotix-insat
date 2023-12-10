@@ -1,0 +1,10 @@
+17:52:57 **** Incremental Build of configuration Debug for project stmCode_Final ****
+make -j16 all 
+arm-none-eabi-size   stmCode_Final.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 239496	    836	  13400	 253732	  3df24	stmCode_Final.elf
+Finished building: default.size.stdout
+ 
+
+17:52:58 Build Finished. 0 errors, 0 warnings. (took 232ms)
+

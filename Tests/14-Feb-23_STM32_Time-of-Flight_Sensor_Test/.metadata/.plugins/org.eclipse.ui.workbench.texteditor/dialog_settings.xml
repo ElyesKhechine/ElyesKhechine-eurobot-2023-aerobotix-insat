@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="selection" value="move_distance2"/>
+		<item key="wrap" value="true"/>
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="incremental" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<list key="findhistory">
+			<item value="MOVE_DISTANCE2"/>
+			<item value="trajectory"/>
+			<item value="asta3"/>
+			<item value="move_distance"/>
+			<item value="move_distance2"/>
+			<item value="movement_sequence"/>
+			<item value="Robot_Locate"/>
+			<item value="Robot_locateCurv"/>
+			<item value="Calcul_Curv"/>
+			<item value="TIM_CHANNEL_1"/>
+			<item value="PWM_L"/>
+			<item value="left_correction"/>
+			<item value="TIM3"/>
+			<item value="TIM2"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="1334"/>
+		<item key="DIALOG_Y_ORIGIN" value="243"/>
+		<item key="DIALOG_WIDTH" value="511"/>
+		<item key="DIALOG_HEIGHT" value="523"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

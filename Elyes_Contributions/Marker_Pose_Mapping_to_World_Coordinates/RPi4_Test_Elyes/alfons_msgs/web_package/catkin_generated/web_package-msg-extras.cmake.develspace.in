@@ -1,0 +1,2 @@
+set(web_package_MESSAGE_FILES "")
+set(web_package_SERVICE_FILES "/home/ubuntu/AeroBotiX_euro2021/src/web_package/srv/connect.srv")

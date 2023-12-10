@@ -1,0 +1,53 @@
+transform_tolerance: 0.5,
+robot_base_frame: base_link,
+
+width: 2,
+height: 3,
+origin_x: -150,
+origin_y: -50,
+
+resolution: 0.2,
+footprint:
+- [-11.2, -3.2]
+- [-11.2, 3.2]
+- [0.2, 3.2]
+- [0.2, -3.2],
+update_frequency: 10.0,
+static_map: false,
+publish_frequency: 10.0,
+max_obstacle_height:  3.0,
+min_obstacle_height:  -2, 
+obstacle_range: 70.0,
+raytrace_range: 70.0,
+always_send_full_costmap: true,
+
+plugins:
+    - {name: obstacles,          type: "costmap_2d::VoxelLayer"}
+
+obstacles: {
+  z_resolution: 0.2,
+  z_voxels: 15,
+  origin_z: -2.0,
+  publish_voxel_map: true,
+  mark_threshold: 0.5,
+  enabled: true,
+  max_obstacle_height:  3.0,
+  min_obstacle_height:  -2,
+  obstacle_range: 70.0,
+  raytrace_range: 70.0,
+  inflation_radius: 0.0,
+  combination_method: 1,
+  observation_sources: lidar_obstacles,
+  lidar_obstacles: {
+       sensor_frame: /Sensor,
+       data_type: PointCloud2,
+       topic: /cloud_in,
+       expected_update_rate: 5.0,
+       observation_persistence: 0.0,
+       max_obstacle_height:  3.0,
+       min_obstacle_height:  -2,
+       marking: true,
+       clearing: false,
+       raytrace_range: 70.0,
+       obstacle_range: 70.0}
+  }

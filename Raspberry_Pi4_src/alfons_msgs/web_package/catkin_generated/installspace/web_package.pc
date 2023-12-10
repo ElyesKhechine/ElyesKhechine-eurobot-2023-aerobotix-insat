@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: web_package
+Description: Description of web_package
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,27 @@
+<launch>
+
+   <master auto="start"/>
+
+   <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+        <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />  -->
+        <rosparam file="$(find reel_euro2021)/config/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find reel_euro2021)/config/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find reel_euro2021)/config/global_costmap_params.yaml" command="load" /> 
+        <rosparam file="$(find reel_euro2021)/config/base_local_planner_params.yaml" command="load" /> 
+        <rosparam file="$(find reel_euro2021)/config/move_base_params.yaml" command="load" /> 
+        <rosparam file="$(find reel_euro2021)/config/teb.yaml" command="load" />
+  </node>
+
+  <node pkg="reel_euro2021" type="goal" name="goal"/>
+
+  
+  <!-- <node pkg="reel_euro2021" type="evitement" name="evitement">
+        <param name="timer" type="int"  value="10"/> 
+        <param name="distance" type="double" value="0.7"/> 
+        <param name="delay" type="double" value="0.1"/>
+        <param name="angle" type="int" value="60"/>
+  </node>   -->
+
+
+</launch> 

@@ -1,0 +1,182 @@
+#include <setRos.h>
+#include <ros.h>
+#include <geometry_msgs/Twist.h>
+#include <std_srvs/SetBool.h>
+#include <std_msgs/Bool.h>
+#include <reel_euro2021/ta7wil.h>
+#include <iostream>
+#include "Robot_Navi_Euro20.h"
+#include <gazebo_msgs/ApplyJointEffort.h>
+
+using namespace std;
+
+
+
+
+
+ros::NodeHandle nh;
+
+reel_euro2021::ta7wil ta7wil;
+
+extern bool evitementFlag;
+
+extern volatile float current_x;
+extern volatile float current_y;
+extern volatile double current_phi_rad;
+extern volatile double right_speed, left_speed;
+extern volatile float spacing_encoder;
+extern volatile double right_encoder_speed,left_encoder_speed;
+extern volatile float left_radius,right_radius,spacing_encoder,spacing_wheel;
+float test;
+double v_rx ;
+double omega_r ;
+
+float Vx;
+float Vz;
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart){
+  nh.getHardware()->flush();
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+  nh.getHardware()->reset_rbuf();
+}
+void messageCb(const geometry_msgs::Twist& vel){
+	Vx=vel.linear.x;
+	Vz=vel.angular.z;
+}
+void commandCallback(const gazebo_msgs::ApplyJointEffortRequest & req,gazebo_msgs::ApplyJointEffortResponse& res){
+
+	if(!strcmp(req.joint_name,"WheelSpacing")){
+		spacing_wheel=req.effort;
+		res.status_message ="Done Setting Wheel Spacing";
+
+	}
+	else if(!strcmp("EncoderSpacing",req.joint_name)){
+		spacing_encoder=req.effort;
+		res.success=true;
+		res.status_message ="Done Setting Encoder Spacing";
+
+	}else if(!strcmp("RightRadius",req.joint_name)){
+		right_radius=req.effort;
+		res.success=true;
+		res.status_message ="Done Setting Right Radius";
+	}
+	else if(!strcmp("LeftRadius",req.joint_name)){
+		left_radius=req.effort;
+		res.success=true;
+		res.status_message ="Done Setting Left Radius";
+	}else if(!strcmp("Go",req.joint_name)){
+		if(req.effort==0){
+//			Robot_Locate(req.duration.sec,req.duration.nsec,400);
+		}else{
+//			Robot_Locate(req.duration.sec,req.duration.nsec,req.effort);
+		}
+		res.success=true;
+		res.status_message ="Done Reaching Goal";
+	}
+	else if(!strcmp("Rotate",req.joint_name)){
+
+//			rotate(req.effort*360, 400);
+			res.success=true;
+			res.status_message ="Done Rotating";
+		}
+	else{
+		res.success=false;
+				res.status_message ="FAILED !!!!!!!!!";
+	}
+
+
+}
+
+
+
+void evitementCallback(const std_srvs::SetBoolRequest& req,std_srvs::SetBoolResponse& res){
+	evitementFlag=req.data;
+	res.message="Done";
+	res.success=true;
+	}
+
+ros::Subscriber<geometry_msgs::Twist> sub("cmd_vel", &messageCb );
+ros::Publisher ta7wil_pub("ta7wil", &ta7wil);
+ros::ServiceServer<gazebo_msgs::ApplyJointEffortRequest,gazebo_msgs::ApplyJointEffortResponse> subCommandStm("/StmCommand", &commandCallback );
+ros::ServiceServer<std_srvs::SetBoolRequest ,std_srvs::SetBoolResponse> evitementService("/evitementSrv", &evitementCallback);
+
+
+void setup(void)
+{
+  nh.initNode();
+  nh.subscribe(sub);
+  nh.advertise(ta7wil_pub);
+  nh.advertiseService(subCommandStm);
+  nh.advertiseService(evitementService);
+
+}
+
+void loop(void)
+{
+
+  // tf odom->base_link
+	ta7wil.x=current_x/1000;
+	ta7wil.y=current_y/1000;
+	ta7wil.teta=current_phi_rad;
+
+	// en mm/s
+//	 v_rx = ( 	right_encoder_speed + left_encoder_speed) /2;
+	 v_rx = ( 	right_encoder_speed + left_encoder_speed) /2000;
+
+
+	 omega_r = ( right_encoder_speed - left_encoder_speed ) / spacing_encoder;
+	ta7wil.vx=v_rx;
+	ta7wil.vy=omega_r;
+// 	  transformStamped.header.frame_id =odom ;
+// 	  transformStamped.child_frame_id = base_link ;
+//
+// 	  transformStamped.transform.translation.x = (double)current_x/1000;
+// 	  transformStamped.transform.translation.y = (double)current_y/1000;
+//
+// 	  transformStamped.transform.rotation = tf::createQuaternionFromYaw(current_phi_rad);
+// 	  transformStamped.header.stamp = nh.now();
+//
+// 	  broadcaster.sendTransform(transformStamped);
+
+
+
+ 	  //Send ODOM
+
+//
+// 	  msg.header.stamp = nh.now();
+// 	  msg.header.frame_id = "odom";
+//
+//
+//// 	 v_rx = ( 	right_encoder_speed + left_encoder_speed) /2;
+//// 	 omega_r = ( right_encoder_speed - left_encoder_speed ) / spacing_encoder;
+//
+//
+//
+// 	  //set the position
+// 	  msg.pose.pose.position.x = (double)current_x/1000;
+// 	  msg.pose.pose.position.y = (double)current_y/1000;
+// 	  msg.pose.pose.position.z = 0.0;
+// 	  msg.pose.pose.orientation = tf::createQuaternionFromYaw(current_phi_rad);
+//
+//
+//
+//
+// 	  //set the velocity
+// 	  msg.child_frame_id = "base_link";
+// 	  msg.twist.twist.linear.x = v_rx;
+// 	  msg.twist.twist.linear.y = 0;
+// 	  msg.twist.twist.angular.z = omega_r;
+//
+// 	   //publish the message
+// 	  odom_pub.publish(&msg);
+ 	 ta7wil_pub.publish(&ta7wil);
+
+
+
+ 	  nh.spinOnce();
+ 	  HAL_Delay(1);//badel delay
+
+}
+

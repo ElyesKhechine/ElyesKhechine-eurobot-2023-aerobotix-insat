@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+<param name="couleur" type="int" value="1" />
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_cam_broadcastesdr" args="-0.01 0.88 0.22 0 2.2689325584617 -0.959931 map scoreEstimationCamera 1000" /> -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="world_cam_broadcastesdr" args="0.83 0.01 0.145 0 0 -1.5708 map scoreEstimationCamera 1000" /> -->
+
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="scoreEstimationCamera_galerie_broadcaster" args="0.144 -0.294 1.293 
+  0.951 -0.111 0.263 0.120 scoreEstimationCameraIp galerie" /> -->
+
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="detectionArucoMileuCamera_tagReference_broadcaster" args="0.144 -0.294 1.293 
+  0.951 -0.111 0.263 0.120 detectionArucoMileuCameraIp arucoMilieu" /> -->
+  
+  <node pkg="tf2_ros" type="static_transform_publisher" name="arucoMilieu_origine" args="-1.5 -0.75 0 
+  0.0 0.0 0.0 1.0 arucoMilieu map" />
+  <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="map_p1" args="1.2 0.8 0 
+  0 0 0 1.0 map p1" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_p2" args="1.2 1.150 0 
+  0 0 0 1.0 map p2" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_p3" args="1.55 0.8 0 
+  0 0 0 1.0 map p3" />
+  <node pkg="tf2_ros" type="static_transform_publisher" name="map_p4" args="1.55 1.150 0 
+  0 0 0 1.0 map p4" /> -->
+  
+
+  <!--   
+  <node pkg="tf" type="static_transform_publisher" name="p1" args="0.0 1.0 0 0 0 0 map p1 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="p2" args="0.133 1.0 0 0 0 0 map p2 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="p3" args="0.266 1.0 0 0 0 0 map p3 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="p4" args="0.4 1.0 0 0 0 0 map p4 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="p5" args="0.0 1.6 0 0 0 0 map p5 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="p6" args="0.133 1.6 0 0 0 0 map p6 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="p7" args="0.266 1.6 0 0 0 0 map p7 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="p8" args="0.4 1.6 0 0 0 0 map p8 1000" />
+
+  <node pkg="tf" type="static_transform_publisher" name="g1" args="0.450 1.956 0.038 0 0 0 map g1 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="g2" args="0.690 1.956 0.038 0 0 0 map g2 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="g3" args="0.930 1.956 0.038 0 0 0 map g3 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="g4" args="1.170 1.956 0.038 0 0 0 map g4 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="g5" args="1.170 2.090 0.270 0 0 0 map g5 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="g6" args="0.690 2.090 0.270 0 0 0 map g6 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="g7" args="0.930 2.090 0.270 0 0 0 map g7 1000" />
+  <node pkg="tf" type="static_transform_publisher" name="g8" args="0.450 2.090 0.270 0 0 0 map g8 1000" /> -->
+
+  <!-- <arg name="map_file" default="$(find reel_euro2021)/maps/mapEuro.yaml"/>
+  <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)" /> -->
+
+  <arg name="use_rviz" default="True" />
+  <arg name="use_camera" default="True" />
+
+  <arg name="image_width" default="1920" /> <!-- 640, 1920 -->
+  <arg name="image_height" default="1080" /> <!-- 480, 1080 -->
+  <arg name="cameraEstimation" default="/scoreEstimationCameraIp/image_raw" />
+  <arg name="cameraEstimation_info" default="/scoreEstimationCameraIp/camera_info" />
+
+  <arg name="cameraDistributeur" default="/detectionArucoMileuCameraIp/image_raw" />
+  <arg name="cameraDistributeur_info" default="/detectionArucoMileuCameraIp/camera_info" />
+
+  <arg name="cameraMilieu" default="/detectionArucoMileuCameraIp/image_raw" />
+  <arg name="cameraMilieu_info" default="/detectionArucoMileuCameraIp/camera_info" />
+
+  <arg name="tf_prefix" default="marker_id" />
+  <arg name="show_detections" default="true" />
+  <arg name="marker_size" default="0.05" doc="length of the physical marker's side in meters" />
+  <arg name="dictionary_name" default="DICT_4X4_50" />
+  <arg name="blur_window_size" default="7" />
+  <arg name="num_detected" default="25" /> <!-- 0: do not use it, -->
+  <arg name="min_prec_value" default="50" /> <!-- 0: do not use it, 80 means aruco marker must be detected in 80% of the last pics to be displayed -->
+
+  <arg name="scoreEstimationCameraIp" default="https://10.42.0.64:8080/video" />
+  <arg name="detectionArucoMileuCameraIp" default="https://172.18.173.55:8080/video" />
+  <arg name="detectionDistributeurCameraIp" default="https://172.18.173.55:8080/video" />
+
+<group ns = "test">
+  <node pkg="aruco_detector_ocv" type="node" name="arucoEstimation" output="screen">
+    <param name="camera" type="string" value="$(arg cameraEstimation)" />
+    <param name="role" type="string" value="/estimationScore" />
+    <param name="camera_info" type="string" value="$(arg cameraEstimation_info)" />
+    <param name="show_detections" type="bool" value="$(arg show_detections)" />
+    <param name="tf_prefix" type="string" value="$(arg tf_prefix)" />
+    <param name="marker_size" type="double" value="$(arg marker_size)" />
+    <param name="dictionary_name" type="string" value="$(arg dictionary_name)" />
+    <param name="image_width" type="double" value="$(arg image_width)" />
+    <param name="image_height" type="double" value="$(arg image_height)" />
+    <param name="blur_window_size" type="double" value="$(arg blur_window_size)" />
+    <param name="num_detected" type="double" value="$(arg num_detected)" />
+    <param name="min_prec_value" type="double" value="$(arg min_prec_value)" /> 
+  </node>
+</group>
+  <!-- <node pkg="aruco_detector_ocv" type="node" name="estimationPoseArucoMilieu" output="screen">
+    <param name="camera" type="string" value="$(arg cameraMilieu)" />
+    <param name="role" type="string" value="/estimationPose" />
+    <param name="camera_info" type="string" value="$(arg cameraMilieu_info)" />
+    <param name="show_detections" type="bool" value="$(arg show_detections)" />
+    <param name="tf_prefix" type="string" value="$(arg tf_prefix)" />
+    <param name="marker_size" type="double" value="0.05" />
+    <param name="dictionary_name" type="string" value="DICT_4X4_50" />
+    <param name="image_width" type="double" value="$(arg image_width)" />
+    <param name="image_height" type="double" value="$(arg image_height)" />
+    <param name="blur_window_size" type="double" value="$(arg blur_window_size)" />
+    <param name="num_detected" type="double" value="$(arg num_detected)" />
+    <param name="min_prec_value" type="double" value="$(arg min_prec_value)" />
+  </node> -->
+
+  <!-- <node pkg="aruco_detector_ocv" type="node" name="arucoDistributeur" output="screen">
+    <param name="camera" type="string" value="$(arg cameraDistributeur)" />
+    <param name="camera_info" type="string" value="$(arg cameraDistributeur_info)" />
+    <param name="show_detections" type="bool" value="$(arg show_detections)" />
+    <param name="tf_prefix" type="string" value="$(arg tf_prefix)" />
+    <param name="marker_size" type="double" value="$(arg marker_size)" />
+    <param name="dictionary_name" type="string" value="$(arg dictionary_name)" />
+    <param name="image_width" type="double" value="$(arg image_width)" />
+    <param name="image_height" type="double" value="$(arg image_height)" />
+    <param name="blur_window_size" type="double" value="$(arg blur_window_size)" />
+    <param name="num_detected" type="double" value="$(arg num_detected)" />
+    <param name="min_prec_value" type="double" value="$(arg min_prec_value)" />
+  </node> -->
+
+  <node name="scoreEstimation" pkg="reel_euro2021" type="scoreEstimation" output="screen">
+    <param name="camera" type="string" value="$(arg cameraEstimation)" />
+        
+  </node>
+
+  <!-- <node name="detectionArucoMilieu" pkg="reel_euro2021" type="detectionArucoMilieu" output="screen">
+    <param name="camera" type="string" value="$(arg cameraMilieu)" />
+  </node> -->
+
+  <!-- <node name="detectDistributeurs" pkg="reel_euro2021" type="detectDistr.py" output="screen">
+    <param name="camera" type="string" value="$(arg cameraEstimation)" />
+  </node> -->
+
+  <node pkg="ipcamera_driver" type="ipcamera_driver" name="scoreEstimationCameraIp" output="screen">
+    <param name="video_url" type="string" value="$(arg scoreEstimationCameraIp)" />
+    <param name="camera_info_url" type="string" value="file:///home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/config/gassab_camera.yaml" />
+    <param name="frame_id" type="string" value="scoreEstimationCameraIp" />
+    <remap from="camera/image" to="scoreEstimationCameraIp/image_raw" />
+  </node>
+
+<!--  <node pkg="ipcamera_driver" type="ipcamera_driver" name="detectionArucoMileuCameraIp" output="screen">
+    <param name="video_url" type="string" value="$(arg detectionArucoMileuCameraIp)" />
+    <param name="camera_info_url" type="string" value="file:///home/ubuntu/AeroBotiX_euro2021/src/reel_euro2021/config/loukil_camera.yaml" />
+    <param name="frame_id" type="string" value="detectionArucoMileuCameraIp" />
+    <remap from="camera/image" to="detectionArucoMileuCameraIp/image_raw" />
+  </node> -->
+
+ <!--  <node pkg="ipcamera_driver" type="ipcamera_driver" name="detectionDistributeurCamera" output="screen">
+    <param name="video_url" type="string" value="$(arg detectionDistributeurCameraIp)" />
+    <param name="camera_info_url" type="string" value="file:///home/mohamed/.ros/camera_info/head_camera.yaml" />
+    <param name="frame_id" type="string" value="detectionDistributeurCamera" />
+    <remap from="camera/image" to="detectionDistributeurCamera/image_raw" />
+  </node> -->
+
+  <!-- <group if="$(arg use_rviz)">
+    <node pkg="rviz" type="rviz" name="markers_extrinsic" args="-d $(find aruco_detector_ocv)/config/aruco_opencv.rviz" />
+  </group> -->
+
+</launch>
