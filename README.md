@@ -1,18 +1,18 @@
 # Multi-Robot Coordination for Multi-Goal Tasks in a Dynamic Environment
 
-### Eurobot 2023, AerobotiX
+### Eurobot 2023, AerobotiX INSAT Club
 
 **Technologies:** C++, Python, ROS, Linux, XML, STM32, UART, I2C, Raspberry Pi, Arduino, Git, OpenCV, Solidworks, LiDAR, PID, IMU, Encoders, EKF
 
 ## Introduction
 
-This project, undertaken in collaboration with AerobotiX for the International Eurobot 2023 competition which is hosted by Planètes Sciences every year in France, delves into the realm of multi-robot coordination within dynamic environments. By harnessing an array of cutting-edge technologies and methodologies, our aim was to streamline the execution of multiple game tasks for 2 differential drive robots.
+This project, undertaken in collaboration with AerobotiX INSAT Club for the International Eurobot 2023 competition which is hosted by Planètes Sciences every year in France, delves into the realm of multi-robot coordination within dynamic environments. By harnessing an array of cutting-edge technologies and methodologies, our aim was to streamline the execution of multiple game tasks for 2 differential drive robots.
 
 ## Project Scope
 
 Commencing from July 29, 2022, to May 5, 2023, our project journey was marked by intensive research, development, and testing phases. Led by a proficient team, our efforts were concentrated on the strategic design, optimization, and testing of multiple robotic system prototypes, each tailored to excel in dynamic environments.
 
-## Key Features
+## Technical Details
 
 - **Prototype Optimization**: Strategically designed, optimized, and tested 7 robotic system prototypes, reducing design-to-prototype turnaround time by 15% and enhancing competition readiness.
 - **Precise Motion Algorithms**: Developed precise motion algorithms on an STM32 F446RE platform, incorporating PID control for wheel speed regulation and orientation correction, achieving minimal deviations of ±1mm.
