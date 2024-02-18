@@ -6,11 +6,11 @@
 
 ## Introduction
 
-This project, undertaken in collaboration with AerobotiX INSAT Club for the International Eurobot 2023 competition which is hosted by Planètes Sciences every year in France, delves into the realm of multi-robot coordination within dynamic environments. By harnessing an array of cutting-edge technologies and methodologies, our aim was to streamline the execution of multiple game tasks for 2 differential drive robots.
+This project delves into the realm of multi-robot coordination within dynamic environments. By harnessing an array of cutting-edge technologies and methodologies, our aim was to streamline the execution of multiple game tasks for 2 differential drive robots.
 
 ## Project Scope
 
-Commencing from July 29, 2022, to May 5, 2023, our project journey was marked by intensive research, development, and testing phases. Led by a proficient team, our efforts were concentrated on the strategic design, optimization, and testing of multiple robotic system prototypes, each tailored to excel in dynamic environments.
+Commencing from July 29, 2022, to May 5, 2023, this project was undertaken in collaboration with the AerobotiX INSAT Club in preparation for the International Eurobot 2023 competition which is hosted by Planètes Sciences every year in France. Led by a proficient team of 10 students, our journey was marked by intensive research, development, and testing phases.
 
 ## Technical Details
 
